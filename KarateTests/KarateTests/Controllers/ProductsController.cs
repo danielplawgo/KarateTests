@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace KarateTests.Controllers
 {
+    [Route("api/[controller]")]
+    [Authorize]
     public class ProductsController : Controller
     {
         [HttpGet]
-        [Route("Products/{id}")]
+        [Route("{id}")]
         public IActionResult Get(int id)
         {
             return Ok(new ProductDto()
